@@ -16,7 +16,7 @@
 
 <style scoped>
 .wrapper {
-  flex-grow: 100;
+  flex-basis: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -33,21 +33,21 @@
   font-weight: 900;
 }
 
-@media only screen and (min-width: 400px) {
-  .wrapper {
-    margin: 2rem 4rem;
-    gap: 4rem;
-  }
+img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 100%;
+}
 
+@media only screen and (min-width: 600px) {
   .main {
     font-size: 4rem;
   }
-}
 
-img {
-  height: 15rem;
-  width: 15rem;
-  border-radius: 100%;
+  img {
+    height: 15rem;
+    width: 15rem;
+  }
 }
 
 .name {

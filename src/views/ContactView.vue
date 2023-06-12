@@ -36,8 +36,15 @@
   display: flex;
   flex-wrap: wrap;
   padding: 2rem;
-  gap: 3rem;
+  gap: 1rem;
   justify-content: start;
+}
+
+
+@media only screen and (min-height: 800px) {
+  .about ul {
+    gap: 3rem;
+  }
 }
 
 .contact-wrapper {

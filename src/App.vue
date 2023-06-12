@@ -29,9 +29,16 @@ import NavBar from './components/NavBar.vue'
   flex-grow: 1;
 }
 
+@media only screen and (min-height: 800px) {
+  .inner {
+    max-height: 40rem;
+  }
+}
+
 .inner {
-  min-height: 40rem;
-  width: 50rem;
+  max-height: 60rem;
+  max-width: 50rem;
+  overflow: hidden;
   margin: 2rem;
   background-color: var(--fg);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
