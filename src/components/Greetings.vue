@@ -21,6 +21,8 @@
   gap: 0.5rem;
   padding: 2rem 0.5rem;
   justify-content: space-between;
+  flex-grow: 0;
+  flex-basis: 1rem;
 }
 
 @media only screen and (min-width: 400px) {

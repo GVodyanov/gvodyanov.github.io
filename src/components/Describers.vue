@@ -26,6 +26,7 @@
   align-content: center;
   flex-wrap: wrap;
   height: 100%;
+  flex-grow: 1;
 }
 
 .main {

@@ -34,7 +34,7 @@
   display: flex;
   flex-grow: 100;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
   gap: 1rem;
   list-style-type: none;
 }
@@ -42,6 +42,10 @@
 @media only screen and (min-height: 800px) {
   .about ul {
     gap: 3rem;
+  }
+
+  .project-wrapper {
+    padding: 2rem;
   }
 }
 

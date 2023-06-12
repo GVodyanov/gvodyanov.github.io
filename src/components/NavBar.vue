@@ -34,7 +34,7 @@ ul {
   margin: 1rem 0.5rem;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 600px) {
   ul {
     margin: 2rem 4rem;
   }

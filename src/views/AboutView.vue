@@ -55,7 +55,7 @@
   height: 100%;
 }
 
-@media only screen and (min-height: 800px) {
+@media only screen and (min-height: 850px) {
   .about ul {
     gap: 3rem;
   }

@@ -32,14 +32,15 @@ import NavBar from './components/NavBar.vue'
 @media only screen and (min-height: 800px) {
   .inner {
     max-height: 40rem;
+    max-width: 50rem;
   }
 }
 
 .inner {
-  max-height: 60rem;
-  max-width: 50rem;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
-  margin: 2rem;
+  margin: 1rem;
   background-color: var(--fg);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px,
