@@ -40,7 +40,6 @@ import NavBar from './components/NavBar.vue'
   height: 100%;
   width: 100%;
   overflow: hidden;
-  margin: 1rem;
   background-color: var(--fg);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px,
