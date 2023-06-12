@@ -9,7 +9,15 @@ export default defineConfig({
   base: "./",
   resolve: {
     alias: {
+<<<<<<< HEAD
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
 });
+=======
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  base: './',
+})
+>>>>>>> 9643da1 (Make more responsive)

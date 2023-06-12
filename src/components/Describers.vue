@@ -21,16 +21,26 @@
   flex-direction: row;
   justify-content: center;
   margin: 2rem 0.5rem;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
   height: 100%;
 }
 
+.main {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
 @media only screen and (min-width: 400px) {
   .wrapper {
     margin: 2rem 4rem;
+    gap: 4rem;
+  }
+
+  .main {
+    font-size: 4rem;
   }
 }
 
@@ -46,11 +56,6 @@ img {
   flex-direction: row;
   line-height: 5rem;
   flex-direction: column;
-}
-
-.main {
-  font-size: 4rem;
-  font-weight: 900;
 }
 
 .sub {

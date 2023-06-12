@@ -31,7 +31,7 @@ ul {
   flex-direction: row;
   flex-shrink: 1;
   gap: 0.5rem;
-  margin: 2rem 0.5rem;
+  margin: 1rem 0.5rem;
 }
 
 @media only screen and (min-width: 400px) {
