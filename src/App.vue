@@ -20,7 +20,7 @@ import NavBar from './components/NavBar.vue'
   justify-content: center;
   align-content: center;
   align-items: center;
-  background: url("./assets/backdrop.jpg") bottom center no-repeat;
+  background: url("./assets/back.jpg") bottom center no-repeat;
   background-size: cover;
 }
 
