@@ -1,19 +1,17 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue'
 </script>
 
 <template>
   <div class="backdrop">
     <div class="inner">
       <RouterView />
-      <NavBar />
     </div>
   </div>
 </template>
 
 <style scoped>
-.backdrop {
+/*.backdrop {
   height: 100%;
   width: 100%;
   display: flex;
@@ -49,5 +47,5 @@ import NavBar from './components/NavBar.vue'
   display: flex;
   flex-direction: column;
   justify-items: stretch;
-}
+}*/
 </style>
