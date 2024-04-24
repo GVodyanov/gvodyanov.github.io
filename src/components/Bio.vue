@@ -5,7 +5,7 @@
     <article>
       <strong>Me:</strong>
       <br />
-      <p>
+      <p class="zoomable">
         I am a scientific lyceum student of applied sciences with a passion for software development
         and engineering. Most of my experience comes from the development of ERP systems for local
         companies in northern Italy. I have also won a few academic awards and am a former school
@@ -16,24 +16,24 @@
       <strong>Languages:</strong>
       <br />
       <ul>
-        <li>English</li>
-        <li>Italian</li>
-        <li>Russian</li>
+        <li class="zoomable">English</li>
+        <li class="zoomable">Italian</li>
+        <li class="zoomable">Russian</li>
       </ul>
     </article>
     <article>
       <strong>Currently learning:</strong>
       <br />
       <ul>
-        <li>German</li>
-        <li>Rust</li>
-        <li>AI</li>
+        <li class="zoomable">German</li>
+        <li class="zoomable">Rust</li>
+        <li class="zoomable">AI</li>
       </ul>
     </article>
     <article>
       <strong>Interests:</strong>
       <br />
-      <p>
+      <p class="zoomable">
         Software development, applied physics, data analysis, philosophy, open source, sustainable
         urbanism, logistics, craft beer, woodworking, baking, SailGP, and much much more
       </p>

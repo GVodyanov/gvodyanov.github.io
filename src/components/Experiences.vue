@@ -6,27 +6,27 @@
       <strong>I have experience in:</strong>
       <br />
       <ul>
-        <li>
+        <li class="zoomable">
           <span>Vue.js</span>
           <p>
             I worked with Vue.js at two companies and have completed a few personal projects with
             it.
           </p>
         </li>
-        <li>
+        <li class="zoomable">
           <span>Flutter and Dart</span>
           <p>
             I have developed a few apps with Flutter, some of which commercially at an internship.
           </p>
         </li>
-        <li>
+        <li class="zoomable">
           <span>PHP</span>
           <p>
             I have made PHP APIs and worked on backends for ERP, CRM, and Collaboration systems,
             along with their respective databases.
           </p>
         </li>
-        <li>
+        <li class="zoomable">
           <span>Linux system administration</span>
           <p>I have experience in setting up web serves and desktop linux system configuration.</p>
         </li>
@@ -36,15 +36,15 @@
       <strong>Achievements:</strong>
       <br />
       <ul>
-        <li>
+        <li class="zoomable">
           <span>Second place in Italy in experimental physics</span>
           <p>Given by the EOES (European olympiads of experimental sciences) in 2023</p>
         </li>
-        <li>
+        <li class="zoomable">
           <span>First place award at city science fair</span>
           <p>Given by "Sperimentando" of Padua in 2023</p>
         </li>
-        <li>
+        <li class="zoomable">
           <span>Elected school representative of "E. Fermi" Lyceum</span>
           <p>2023/2024 school year</p>
         </li>
@@ -54,20 +54,20 @@
       <strong>Projects:</strong>
       <br />
       <ul>
-        <li>
+        <li class="zoomable">
           <a href="https://notes-lib.github.io">Notes Library</a>
           <p>
             A website containing education articles submitted by the community. Built with Vue.js,
             PHP RESTful API, and MySQL.
           </p>
         </li>
-        <li>
+        <li class="zoomable">
           <a href="https://github.com/ScratchX98/Mindrev">Mindrev</a>
           <p>
             An application for organizing notes and flashards to help you study. Built with Flutter.
           </p>
         </li>
-        <li>
+        <li class="zoomable">
           <a href="https://github.com/FerMeLive">FerMe</a>
           <p>
             A social media with an app and website created with some friends. Built with vanilla JS,
@@ -115,7 +115,7 @@ ul {
 }
 
 li {
-  flex-basis: 0;
+  flex-basis: 5rem;
   padding: 2rem;
   flex-grow: 1;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,

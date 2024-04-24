@@ -28,3 +28,20 @@ h1 {
   font-family: Molend, sans-serif;
 }
 
+.zoomable {
+  background-color: #1b1b1c;
+}
+
+.zoomable:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+    background-color: #171718;
+}
+
+p:hover {
+  transform: scale(1.03) !important;
+}
+
+article > strong:first-child {
+  margin-bottom: 1rem;
+}

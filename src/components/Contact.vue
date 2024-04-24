@@ -12,31 +12,31 @@ import {
 
 <template>
   <div class="contacts">
-    <a href="https://github.com/GVodyanov" class="contact">
+    <a href="https://github.com/GVodyanov" class="contact zoomable">
       <RiGithubLine size="3rem" color="#F5F5F5" className="my-icon" />
       GitHub
     </a>
-    <a href="https://discordapp.com/users/620090816140148736" class="contact">
+    <a href="https://discordapp.com/users/620090816140148736" class="contact zoomable">
       <RiDiscordLine size="3rem" color="#F5F5F5" className="my-icon" />
       Discord
     </a>
-    <a href="https://stackoverflow.com/users/17331482/scratchx" class="contact">
+    <a href="https://stackoverflow.com/users/17331482/scratchx" class="contact zoomable">
       <RiStackOverflowLine size="3rem" color="#F5F5F5" className="my-icon" />
       Stack Overflow
     </a>
-    <a href="mailto:scratchx@gmx.com" class="contact">
+    <a href="mailto:scratchx@gmx.com" class="contact zoomable">
       <RiMailLine size="3rem" color="#F5F5F5" className="my-icon" />
       Email
     </a>
-    <a href="https://rosalind.info/users/Grigory_VV/" class="contact">
+    <a href="https://rosalind.info/users/Grigory_VV/" class="contact zoomable">
       <RiLeafLine size="3rem" color="#F5F5F5" className="my-icon" />
       Rosalind
     </a>
-    <a href="https://www.linkedin.com/in/grigory-vodyanov-099505241/" class="contact">
+    <a href="https://www.linkedin.com/in/grigory-vodyanov-099505241/" class="contact zoomable">
       <RiLinkedinLine size="3rem" color="#F5F5F5" className="my-icon" />
       LinkedIn
     </a>
-    <a href="https://www.instagram.com/grigory_vodyanov/" class="contact">
+    <a href="https://www.instagram.com/grigory_vodyanov/" class="contact zoomable">
       <RiInstagramLine size="3rem" color="#F5F5F5" className="my-icon" />
       Instagram
     </a>
@@ -71,6 +71,7 @@ a {
   flex-basis: 0;
   width: 10rem;
   background-color: #161617;
+  text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
