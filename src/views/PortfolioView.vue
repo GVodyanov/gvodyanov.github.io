@@ -14,6 +14,8 @@
         <br /><br />
         Most of my experience comes from the development of Enterprise software focused on Data
         Protection and Open Source solutions. Here are some of the project I worked on recently:
+        <br><br>
+        <span class="grey">Please also check out <a href="https://github.com/GVodyanov">My Github</a>, I have a lot of work on there</span>
       </div>
       <div class="portfolio-list">
         <div class="portfolio-item" v-for="project in projects" :key="project.title">
@@ -88,6 +90,10 @@ h1 {
   /* slightly stronger text shadow for more depth */
   text-shadow: rgba(0, 0, 0, 0.12) 0 3px 2px, rgba(0, 0, 0, 0.12) 0 6px 4px,
     rgba(0, 0, 0, 0.12) 0 12px 8px, rgba(0, 0, 0, 0.12) 0 24px 16px;
+}
+.grey {
+  font-style: italic;
+  opacity: 0.8;
 }
 .background {
   background: #171718;
