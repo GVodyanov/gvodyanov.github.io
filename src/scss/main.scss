@@ -1,0 +1,272 @@
+// === Variables ===
+$color-background: #090909;
+$color-font: #f0ece8;
+$color-surface: #0c0b0a;
+
+$base: 1rem; // grid baseline — all spacing/sizing is a whole multiple of this
+
+// === Reset & Base ===
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%; // respect user browser default (typically 16px)
+  color: $color-font;
+  background-color: $color-background;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+a {
+  color: $color-font;
+  text-decoration: none;
+}
+
+// === Hero Section ===
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $color-surface;
+  perspective: $base * 56;
+  position: relative;
+  overflow: hidden;
+
+  // spotlight origin, driven by JS
+  --gx: 50%;
+  --gy: 50%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle $base * 24 at var(--gx) var(--gy),
+      rgba(180, 140, 100, 0.12) 0%,
+      rgba(180, 140, 100, 0.04) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  &.is-lit::before {
+    opacity: 1;
+  }
+}
+
+// === Business Card ===
+.card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: $base * 2;
+  width: $base * 42;
+  max-width: 90vw;
+  padding: $base * 2;
+  background-color: $color-background;
+  border: 1px solid rgba($color-font, 0.08);
+  border-radius: $base;
+
+  animation: card-breathe 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+
+  box-shadow:
+    0 #{$base} #{$base * 4} rgba(0, 0, 0, 0.45),
+    0 #{$base * 0.5} #{$base * 2} rgba(0, 0, 0, 0.3);
+
+  // fast snap for JS-driven tilt, slow return to idle
+  transition: box-shadow 0.2s ease;
+
+  &.is-tilting {
+    animation: none;
+    transition: box-shadow 0.2s ease;
+  }
+
+  &__info {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__name {
+    font-size: $base * 2;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: $base * 0.5;
+  }
+
+  &__title {
+    // browser default 1rem — no override needed
+    font-weight: 400;
+    opacity: 0.7;
+    margin-bottom: $base;
+  }
+
+  &__roles {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.5;
+  }
+
+  &__role {
+    font-size: small; // browser keyword — slightly smaller than body, no magic number
+    opacity: 0.85;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $base;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $base * 0.5;
+    padding: $base * 0.5 $base;
+    border: 1px solid rgba($color-font, 0.2);
+    border-radius: $base * 0.5;
+    font-size: small; // browser keyword — no magic number
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    svg {
+      width: $base;
+      height: $base;
+      fill: $color-font;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: rgba($color-font, 0.08);
+      border-color: rgba($color-font, 0.4);
+    }
+  }
+}
+
+// === Breathe Keyframes (idle, no cursor) ===
+@keyframes card-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(#{$base * -0.5});
+  }
+}
+
+// === Ticker Bars ===
+.ticker {
+  display: flex;
+  align-items: center;
+  background-color: $color-background;
+  border-top: 1px solid rgba($color-font, 0.06);
+
+  &__label {
+    flex-shrink: 0;
+    padding: $base * 0.5 $base;
+    font-size: small;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    white-space: nowrap;
+    border-right: 1px solid rgba($color-font, 0.06);
+  }
+
+  &__viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+
+    // fade edges
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: $base * 3;
+      z-index: 1;
+      pointer-events: none;
+    }
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, $color-background, transparent);
+    }
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, $color-background, transparent);
+    }
+  }
+
+  &__track {
+    display: inline-flex; // shrink-wrap to content width so JS can measure it
+    align-items: center;
+    gap: $base;
+    padding: $base * 0.5 0;
+    white-space: nowrap;
+    will-change: transform;
+    // duration set per-track by JS via --ticker-duration
+    animation: ticker-scroll var(--ticker-duration, 20s) linear infinite;
+  }
+
+  &__item {
+    font-size: small;
+    letter-spacing: 0.08em;
+    opacity: 0.25;
+  }
+
+  &__sep {
+    opacity: 0.12;
+    font-size: small;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+// === Responsive ===
+@media (max-width: #{$base * 35}) {
+  .card {
+    flex-direction: column;
+    padding: $base * 2 $base;
+    gap: $base;
+
+    &__info {
+      text-align: left;
+    }
+
+    &__name {
+      font-size: $base * 1.5;
+    }
+
+    &__links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: $base * 0.5;
+    }
+  }
+}
