@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // === Variables ===
 $color-background: #090909;
 $color-font: #f0ece8;
@@ -32,44 +34,34 @@ a {
   text-decoration: none;
 }
 
+// === Landing (hero + tickers = 100vh) ===
+.landing {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
 // === Hero Section ===
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  flex: 1;
   background-color: $color-surface;
-  perspective: $base * 56;
   position: relative;
   overflow: hidden;
+}
 
-  // spotlight origin, driven by JS
-  --gx: 50%;
-  --gy: 50%;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle $base * 24 at var(--gx) var(--gy),
-      rgba(180, 140, 100, 0.12) 0%,
-      rgba(180, 140, 100, 0.04) 40%,
-      transparent 70%
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  &.is-lit::before {
-    opacity: 1;
-  }
+// === Tickers wrapper (pushed to bottom of landing) ===
+.tickers {
+  flex-shrink: 0;
 }
 
 // === Business Card ===
 .card {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: stretch;
   gap: $base * 2;
@@ -79,6 +71,7 @@ a {
   background-color: $color-background;
   border: 1px solid rgba($color-font, 0.08);
   border-radius: $base;
+  isolation: isolate;
 
   animation: card-breathe 4s ease-in-out infinite;
   transform-style: preserve-3d;
@@ -89,11 +82,15 @@ a {
     0 #{$base * 0.5} #{$base * 2} rgba(0, 0, 0, 0.3);
 
   // fast snap for JS-driven tilt, slow return to idle
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba($color-font, 0.2);
+  }
 
   &.is-tilting {
     animation: none;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   &__info {
@@ -166,10 +163,10 @@ a {
 @keyframes card-breathe {
   0%,
   100% {
-    transform: translateY(0);
+    transform: perspective(#{$base * 56}) translateY(0);
   }
   50% {
-    transform: translateY(#{$base * -0.5});
+    transform: perspective(#{$base * 56}) translateY(#{$base * -0.5});
   }
 }
 
@@ -246,6 +243,246 @@ a {
   to   { transform: translateX(-50%); }
 }
 
+// === Scroll Hint Arrows ===
+.scroll-hint {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: $base * 0.5 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+
+  &.is-hidden {
+    opacity: 0;
+  }
+
+  &__arrow {
+    width: $base * 2;
+    height: $base * 2;
+    color: rgba($color-font, 0.35);
+    flex-shrink: 0;
+    animation: arrow-bob 2.4s ease-in-out infinite;
+
+    // stagger each arrow slightly
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.15}s;
+      }
+    }
+  }
+}
+
+@keyframes arrow-bob {
+  0%, 100% { transform: translateY(-#{$base * 0.3}); opacity: 0.2; }
+  50%       { transform: translateY(#{$base * 0.3}); opacity: 0.6; }
+}
+
+// === Spotlight (fixed to viewport, follows cursor everywhere outside hero) ===
+.spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  --sx: -999px;
+  --sy: -999px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle 14rem at var(--sx) var(--sy),
+        rgba(255, 106, 0, 0.12) 0%,
+        transparent 60%
+      );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.40' numOctaves='20' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.12'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    mix-blend-mode: overlay;
+    -webkit-mask-image:
+      radial-gradient(circle 14rem at var(--sx) var(--sy), black 0%, transparent 70%);
+    mask-image:
+      radial-gradient(circle 14rem at var(--sx) var(--sy), black 0%, transparent 70%);
+  }
+
+  &.is-active::before,
+  &.is-active::after {
+    opacity: 1;
+  }
+}
+
+// === Content wrapper (central column) ===
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: $base * 4 $base * 2;
+  display: flex;
+  flex-direction: column;
+  gap: $base * 4;
+}
+
+// === Section Title ===
+.section-title {
+  font-size: $base * 1.5;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: $base * 1.5;
+  opacity: 0.9;
+}
+
+// === Bio ===
+.bio {
+  display: flex;
+  align-items: stretch;
+  gap: $base * 1.5;
+
+  &__photo-wrap {
+    flex-shrink: 0;
+    align-self: stretch;
+    aspect-ratio: 1;
+    overflow: hidden;
+    max-height: 11rem;
+    max-width: 11rem;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.85;
+    display: block;
+    border-radius: $base * 0.5;
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .section-title {
+      margin-bottom: $base * 1.5;
+    }
+  }
+
+  &__text {
+    font-size: $base;
+    line-height: 1.8;
+    opacity: 0.7;
+  }
+}
+
+// === Grid (shared) ===
+.grid {
+  display: grid;
+  gap: $base;
+
+  &--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  // Experience cards
+  &__card {
+    background-color: $color-surface;
+    border: 1px solid rgba($color-font, 0.08);
+    border-radius: $base * 0.5;
+    padding: $base * 1.5;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    z-index: 1;
+
+    &:hover {
+      border-color: rgba($color-font, 0.2);
+      background-color: color.adjust($color-surface, $lightness: 2%);
+    }
+
+    &-title {
+      font-size: $base;
+      font-weight: 700;
+      margin-bottom: $base * 0.25;
+    }
+
+    &-role {
+      font-size: small;
+      opacity: 0.6;
+      margin-bottom: $base * 0.5;
+    }
+
+    &-duration {
+      font-size: small;
+      opacity: 0.4;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  // Tech chips
+  &__chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $base * 0.5;
+    padding: $base * 1.25 $base * 0.5;
+    background-color: $color-surface;
+    border: 1px solid rgba($color-font, 0.08);
+    border-radius: $base * 0.5;
+    text-align: center;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    z-index: 1;
+
+    &:hover {
+      border-color: rgba($color-font, 0.2);
+      background-color: #1a1714;
+    }
+
+    i, &-icon {
+      font-size: $base * 1.75;
+      width: $base * 1.75;
+      height: $base * 1.75;
+      color: $color-font;
+      opacity: 0.7;
+    }
+
+    // simple-icons are black by default, invert for dark theme
+    img#{&}-icon {
+      filter: invert(1);
+    }
+
+    &-label {
+      font-size: $base * 1.5;
+      font-weight: 700;
+      opacity: 0.5;
+      line-height: 1;
+    }
+
+    span {
+      font-size: small;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+  }
+}
 
 // === Responsive ===
 @media (max-width: #{$base * 35}) {
@@ -267,6 +504,25 @@ a {
       flex-wrap: wrap;
       align-items: flex-start;
       gap: $base * 0.5;
+    }
+  }
+
+  .grid {
+    &--3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &--5 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bio {
+    flex-direction: column;
+
+    &__photo-wrap {
+      max-width: 100%;
+      max-height: none;
+      width: 100%;
     }
   }
 }
