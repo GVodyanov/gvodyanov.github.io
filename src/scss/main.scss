@@ -71,6 +71,7 @@ iframe {
   flex-direction: column;
   height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
 // === Hero Section ===
@@ -285,6 +286,9 @@ iframe {
   pointer-events: none;
   transition: opacity 0.6s ease;
   z-index: 1;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 
   &.is-hidden {
     opacity: 0;
@@ -1055,7 +1059,7 @@ iframe {
 
   .grid {
     &--3 {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
     }
     &--5 {
       grid-template-columns: repeat(3, 1fr);
@@ -1079,7 +1083,7 @@ iframe {
   }
 
   .certs__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
 
