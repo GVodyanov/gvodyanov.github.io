@@ -3,16 +3,670 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="./favicon.ico">
+  <link rel="icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <title>Grigory Vodyanov</title>
-  <script type="module" crossorigin src="./assets/index-3b4c0e77.js"></script>
-  <link rel="stylesheet" href="./assets/index-3a01ada0.css">
 </head>
 
 <body>
-  <div id="app"></div>
-  
+  <!-- Spotlight overlay – follows cursor everywhere below the landing -->
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <div class="landing">
+    <section class="hero">
+      <div class="card">
+        <div class="card__info">
+          <h1 class="card__name">Grigory Vodyanov</h1>
+          <p class="card__title">Software Engineering / Data / MLOps</p>
+
+          <ul class="card__roles">
+            <li class="card__role">Software Engineer @ Nextcloud</li>
+            <li class="card__role">Automation Engineering student @ Politecnico di Milano</li>
+            <li class="card__role">Co-Founder @ PadoVia.it</li>
+          </ul>
+        </div>
+
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/GVodyanov" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GitHub
+          </a>
+          <a class="card__link" href="mailto:grigory@padovia.it">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+          <a class="card__link" href="https://www.linkedin.com/in/grigory-vodyanov-099505241/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="tickers">
+      <div class="ticker">
+        <div class="ticker__viewport">
+          <div class="ticker__track">
+            <span class="ticker__item">4 YEARS SOFTWARE ENGINEERING</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">GOOGLE CLOUD CERTIFIED PROFESSIONAL DATA ENGINEER</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">GOOGLE CLOUD CERTIFIED PROFESSIONAL ML ENGINEER</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">CO-FOUNDER PADOVIA.IT</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">SECOND PLACE IN PHYSICS IN ITALY AT THE EUROPEAN OLYMPIADS OF EXPERIMENTAL SCIENCE</span>
+            <span class="ticker__sep">|</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker ticker--labeled">
+        <span class="ticker__label">FEATURED ON:</span>
+        <div class="ticker__viewport">
+          <div class="ticker__track">
+            <span class="ticker__item">CORRIERE DEL VENETO</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">RADIO VENETO24</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">MATTINO DI PADOVA</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">IL GAZZETTINO</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">PADOVAOGGI</span>
+            <span class="ticker__sep">|</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker ticker--labeled">
+        <span class="ticker__label">SPEAKER AT:</span>
+        <div class="ticker__viewport">
+          <div class="ticker__track">
+            <span class="ticker__item">ROME FUTURE WEEK</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">SFSCON</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">RECLAIM THE TECH BOLOGNA</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">LINUX DAY MILANO</span>
+            <span class="ticker__sep">|</span>
+            <span class="ticker__item">NEXTCLOUD CONFERENCE</span>
+            <span class="ticker__sep">|</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll arrows -->
+    <div class="scroll-hint" aria-hidden="true">
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== New content below tickers ===== -->
+  <main class="content">
+
+    <!-- Bio -->
+    <section class="bio">
+      <div class="bio__photo-wrap">
+        <img class="bio__photo" src="/public/img/Grigory.jpg" alt="Grigory Vodyanov">
+      </div>
+      <div class="bio__body">
+        <h2 class="section-title">About</h2>
+        <p class="bio__text">
+          Hello! I am Grigory Vodyanov, a software engineer specializing in data engineering and MLOps, an automation engineering student at the prestigious Politecnico di Milano, and an Open Data advocate. Professionally developing since 15 years old. I speak English, Italian, and Russian on a native level. You will mostly find me in Milan, Italy.
+
+          <br>My favorite topics to work on are digital sovereignty, open data, mobility, and automation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="grid grid--3">
+        <div class="grid__card">
+          <div class="grid__card-img-wrap">
+            <img class="grid__card-img" src="/public/img/nextcloud.jpg" alt="Nextcloud" loading="lazy">
+          </div>
+          <h3 class="grid__card-title">Nextcloud - Software Engineer</h3>
+          <p class="grid__card-role">Development of groupware apps with a focus on Data
+            Protection and Privacy, occasional enterprise customer
+            support, and working with contributions from the open
+            source community. I implemented AI features such as
+            email summaries and event time suggestion. <br>
+            I also held events for my co-workers such as technical
+            workshops and brainstorming sessions.</p>
+          <p class="grid__card-duration">2.5 years — Present</p>
+        </div>
+        <div class="grid__card">
+          <div class="grid__card-img-wrap">
+            <img class="grid__card-img" src="/public/img/erp.jpg" alt="ERP Development" loading="lazy">
+          </div>
+          <h3 class="grid__card-title">WebPD &amp; Eniac - ERP Development</h3>
+          <p class="grid__card-role">I started my career developing enterprise solutions for mostly industrial-focused companies in Northern Italy, managing orders, clients, inventory, and so on.</p>
+          <p class="grid__card-duration">6 months</p>
+        </div>
+        <div class="grid__card">
+          <div class="grid__card-img-wrap">
+            <img class="grid__card-img" src="/public/img/padovia_people.jpg" alt="PadoVia" loading="lazy">
+          </div>
+          <h3 class="grid__card-title">PadoVia - Co-Founder</h3>
+          <p class="grid__card-role">PadoVia is a non-profit developer group grown from 2 to 7 people who create software for improving public transport user experience. Our flagship product is the PadoVia app, which tracks real-time transport in the city of Padua, Italy.<br>My main contributions are managing the team and creating the data transformation pipelines for handling analysis and storage of real-time data from hundreds of vehicles.</p>
+          <p class="grid__card-duration">1.5 years - Present</p>
+        </div>
+        <div class="grid__card">
+          <h3 class="grid__card-title">Linux System Administration</h3>
+          <p class="grid__card-role">I have been administrating linux servers for years and have deep knowledge of virtualization, package management, service management, web hosting, etc.</p>
+          <p class="grid__card-duration">5 years - Present</p>
+        </div>
+        <div class="grid__card">
+          <h3 class="grid__card-title">Politecnico Open Unix Labs</h3>
+          <p class="grid__card-role">Ever since joining the Politecnico di Milano I have been an active member of the PoUL association, holding courses regarding open source software.</p>
+          <p class="grid__card-duration">6 months - Present</p>
+        </div>
+        <div class="grid__card">
+          <h3 class="grid__card-title">Devodia - Self-employed Software Consulting</h3>
+          <p class="grid__card-role">I occasionally pick up software consulting projects I find interesting through my firm Devodia. My main focus is full-stack solutions often with some form of RAG-based agent integration. My most common clients so far have been fashion brands. </p>
+          <p class="grid__card-duration">6 months</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="education">
+      <h2 class="section-title">Education</h2>
+      <div class="education__grid">
+
+        <div class="education__entry">
+          <h3 class="education__school">Politecnico di Milano</h3>
+          <p class="education__degree">Automation Engineering (BSc)</p>
+          <p class="education__body">I am currently pursuing a degree in automation engineering at the Politecnico di Milano, ranked #20 worldwide in Engineering by QS. I am an active member of Politecnico Open Unix Labs.</p>
+        </div>
+
+        <div class="education__entry">
+          <h3 class="education__school">Liceo Scientifico E. Fermi Padova</h3>
+          <p class="education__degree">Applied Science</p>
+          <p class="education__body">I studied applied science in the top ranked scientific lyceum in the city of Padua, serving as elected school representative, and winning second place in Italy in physics at the European Olympiads of Experimental Science (EOES).</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <!-- Featured carousel -->
+      <div class="projects__carousel-wrap">
+        <div class="projects__carousel" role="list">
+
+          <article class="project" role="listitem">
+            <div class="project__img-wrap">
+              <img class="project__img" src="/public/img/padovia_demo.png" alt="PadoVia App screenshot" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">PadoVia App</h3>
+              <p class="project__desc">Real-time predictions and monitoring of public transport in Padua, with over 50k unique monthly users, featured on 6 media outlets including <em>Il Corriere della Sera</em>. Available as a webapp, iOS, and Android app. I co-founded the project, working mainly on the data analysis and backend, and now manage the team of 7 developers.</p>
+              <p class="project__stack">Node.js microservices, Redis, Clickhouse, React Native, PostgreSQL, Dokploy, Docker</p>
+              <a class="project__link" href="https://padovia.it" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open project
+              </a>
+            </div>
+          </article>
+
+          <article class="project" role="listitem">
+            <div class="project__img-wrap">
+              <img class="project__img" src="/public/img/ayla.png" alt="AYLA Archives AI screenshot" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">AYLA Archives AI</h3>
+              <p class="project__desc">AI Consultant for fashion rental startup AYLA. Gives styling suggestions, product recommendations, and assembles outfits based on moodboard inspiration. Built on Google Cloud with an advanced RAG querying system.</p>
+              <p class="project__stack">Vertex AI, Pub/Sub, Firestore, Cloud Run, GraphQL, Firebase, GCS, Python</p>
+              <a class="project__link" href="https://aylaarchives.com/pages/ai-consultant" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open project
+              </a>
+            </div>
+          </article>
+
+          <article class="project" role="listitem">
+            <div class="project__img-wrap">
+              <img class="project__img" src="/public/img/gtfs.png" alt="AI GTFS Fixer screenshot" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">AI GTFS Fixer</h3>
+              <p class="project__desc">Open-source tool that automatically updates public transport route information using an LLM workflow. Scrapes news from a transport authority's website, analyses articles, finds relevant stops/lines/timetables, and dynamically applies detour, strike, or cancellation changes.</p>
+              <p class="project__stack">LlamaIndex, Qdrant, Redis, OpenAI Platform, OSRM routing</p>
+              <a class="project__link" href="https://github.com/PadoVia/GTFSFixerAI" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open project
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="projects__controls">
+        <button class="projects__nav projects__nav--prev" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="projects__nav projects__nav--next" aria-label="Next project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Minor projects -->
+      <div class="minor-projects">
+        <p class="minor-project">
+          <a class="minor-project__link" href="https://hackathon.bz.it/project/-project-genesis-" target="_blank" rel="noopener">Genesis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a> - AI simulation engine that forecasts plant growth under given environmental conditions. Generates a photorealistic image of the final state with a scientific description. Built with Vertex AI, LlamaIndex RAG, and Node.js.
+        </p>
+        <p class="minor-project">
+          <a class="minor-project__link" href="https://github.com/gvodyanov/h-orizon" target="_blank" rel="noopener">H-orizon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a> - NASA Space Apps Challenge 2024. Vue.js app that analyses weather and climate data and suggests crops to plant based on location.
+        </p>
+        <p class="minor-project">
+          <a class="minor-project__link" href="https://github.com/gvodyanov/mindrev" target="_blank" rel="noopener">Mindrev <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a> - Flutter study app with flashcards and notes.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Talks -->
+    <section class="talks">
+      <h2 class="section-title">Talks</h2>
+
+      <div class="talks__carousel-wrap">
+        <div class="talks__carousel" role="list">
+
+          <article class="talk" role="listitem">
+            <div class="talk__embed-wrap">
+              <iframe class="talk__embed" src="https://www.youtube.com/embed/cUin1aFEpCg?si=DGEsy3k_tL3OSA4C" title="Digging deeper into Pinia – Nextcloud Community Conference 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="talk__body">
+              <h3 class="talk__title">Digging deeper into Pinia</h3>
+              <p class="talk__event">Nextcloud Community Conference 2024</p>
+              <p class="talk__desc">Exploring advanced, lesser known, features of the Pinia state management system for Vue.js. Used for sharing application state between components.</p>
+              <p class="talk__location">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Motion Lab Berlin
+              </p>
+            </div>
+          </article>
+
+          <article class="talk" role="listitem">
+            <div class="talk__embed-wrap">
+              <iframe class="talk__embed" src="https://www.youtube.com/embed/skTqjAYPq4U?si=eaQu475DZMMYUNoG" title="Open data and public transport: How sharing stimulates innovation – Rome Future Week 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="talk__body">
+              <h3 class="talk__title">Open data and public transport: How sharing stimulates innovation</h3>
+              <p class="talk__event">Rome Future Week 2025</p>
+              <p class="talk__desc">How Open Data empowers young people to make a change in their community without having to undergo complex formal processes, making societal impact accessible. Referencing my project PadoVia.</p>
+              <p class="talk__location">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Sapienza University, Rome
+              </p>
+            </div>
+          </article>
+
+          <article class="talk" role="listitem">
+            <div class="talk__embed-wrap">
+              <iframe class="talk__embed" src="https://www.youtube.com/embed/jKq4Pshyt44?si=LXeRN2Nq9LoC2Z5x" title="Open Data and public transport: How to develop for mobility – Linux Day Milano 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="talk__body">
+              <h3 class="talk__title">Open Data and public transport: How to develop for mobility</h3>
+              <p class="talk__event">Linux Day Milano 2025</p>
+              <p class="talk__desc">How to leverage Open Data to create applications for mobility, focusing on OpenStreetMap, OpenTripPlanner, and UX design.</p>
+              <p class="talk__location">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Politecnico di Milano
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="talks__controls">
+        <button class="talks__nav talks__nav--prev" aria-label="Previous talk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="talks__nav talks__nav--next" aria-label="Next talk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <p class="talks__also">
+        I also held booths, workshops, and sessions at
+        <span>FOSDEM Brussels</span>,
+        <span>Reclaim the Tech Bologna</span>,
+        <span>SFSCON Bolzano</span>,
+        <span>Nextcloud Company Week</span>, and more.
+
+        Here's also my <a href="https://www.linkedin.com/posts/grigory-vodyanov-099505241_in-the-past-months-i-participated-in-a-series-activity-7355679155910230016-Z1BJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwNrjUBesxaCmD3Nhf20fxC43-2OEKPoDg">series on the radio Veneto24</a> about tech news.
+      </p>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+      <h2 class="section-title">Certifications</h2>
+      <div class="certs__grid">
+
+        <a class="cert" href="https://www.credly.com/badges/22115e8b-ca4b-43dc-b74b-cc879f490848" target="_blank" rel="noopener">
+          <img class="cert__badge" src="/public/img/dataeng.png" alt="Google Cloud Certified Professional Data Engineer badge">
+          <div class="cert__body">
+            <h3 class="cert__title">Google Cloud Certified Professional Data Engineer</h3>
+            <p class="cert__date">08/2025</p>
+            <p class="cert__desc">ELT/ETL, BigQuery, BigTable, Spanner, DataFlow, DataProc, Cloud Storage, etc.</p>
+          </div>
+        </a>
+
+        <a class="cert" href="https://www.credly.com/badges/44d42516-080e-4bcb-adfc-ced99089dbe6/public_url" target="_blank" rel="noopener">
+          <img class="cert__badge" src="/public/img/mleng.png" alt="Google Cloud Certified Professional Machine Learning Engineer badge">
+          <div class="cert__body">
+            <h3 class="cert__title">Google Cloud Certified Professional Machine Learning Engineer</h3>
+            <p class="cert__date">09/2025</p>
+            <p class="cert__desc">Tensorflow, BigQuery ML, Vertex AI, Ethical AI, etc.</p>
+          </div>
+        </a>
+
+        <div class="cert">
+          <img class="cert__badge" src="/public/img/NIS2.png" alt="NIS2 DataGuard Executive Training badge">
+          <div class="cert__body">
+            <h3 class="cert__title">NIS2 - DataGuard Executive Training</h3>
+            <p class="cert__date">08/2025</p>
+            <p class="cert__desc">European Network and Information Security Directive 2</p>
+          </div>
+        </div>
+
+        <div class="cert">
+          <img class="cert__badge" src="/public/img/W3C.png" alt="W3Cx Introduction to Web Accessibility badge">
+          <div class="cert__body">
+            <h3 class="cert__title">W3Cx: Introduction to Web Accessibility</h3>
+            <p class="cert__date">09/2025</p>
+            <p class="cert__desc">Covering features and how to test for web accessibility</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Favourite Tech -->
+    <section class="tech">
+      <h2 class="section-title">Favourite Tech</h2>
+      <div class="grid grid--5">
+        <!-- Frameworks & Runtimes -->
+        <div class="grid__chip">
+          <i class="devicon-vuejs-plain"></i>
+          <span>Vue.js</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-flutter-plain"></i>
+          <span>Flutter</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-nodejs-plain"></i>
+          <span>Node.js</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-graphql-plain"></i>
+          <span>GraphQL</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-docker-plain"></i>
+          <span>Docker</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-linux-plain"></i>
+          <span>Linux</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-googlecloud-plain"></i>
+          <span>Google Cloud</span>
+        </div>
+        <!-- Data & ML Tools -->
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googledataproc.svg" alt="ETL/ELT">
+          <span>ETL / ELT</span>
+        </div>
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googledataflow.svg" alt="Dataflow">
+          <span>Dataflow</span>
+        </div>
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlepubsub.svg" alt="Pub/Sub">
+          <span>Pub/Sub</span>
+        </div>
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlegemini.svg" alt="Vertex AI">
+          <span>Vertex AI</span>
+        </div>
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/ollama.svg" alt="LlamaIndex">
+          <span>LlamaIndex</span>
+        </div>
+        <!-- Databases & Storage -->
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlebigquery.svg" alt="BigQuery">
+          <span>BigQuery</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-clickhouse-plain"></i>
+          <span>Clickhouse</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-mariadb-plain"></i>
+          <span>MariaDB</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-redis-plain"></i>
+          <span>Redis</span>
+        </div>
+        <div class="grid__chip">
+          <img class="grid__chip-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlecloudstorage.svg" alt="Qdrant">
+          <span>Qdrant</span>
+        </div>
+        <!-- Programming Languages -->
+        <div class="grid__chip">
+          <i class="devicon-javascript-plain"></i>
+          <span>Javascript</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-python-plain"></i>
+          <span>Python</span>
+        </div>
+        <div class="grid__chip">
+          <i class="devicon-php-plain"></i>
+          <span>PHP</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // === Ticker init ===
+    const PX_PER_SECOND = 80
+
+    document.querySelectorAll('.ticker__track').forEach((track) => {
+      const original = Array.from(track.children)
+      let safety = 0
+      while (track.scrollWidth < window.innerWidth * 2 + 1 && safety++ < 20) {
+        original.forEach((el) => track.appendChild(el.cloneNode(true)))
+      }
+      const loopWidth = track.scrollWidth / 2
+      const duration = loopWidth / PX_PER_SECOND
+      track.style.setProperty('--ticker-duration', `${duration}s`)
+    })
+
+    // === Card tilt ===
+    const card = document.querySelector('.card')
+    const hero = document.querySelector('.hero')
+    let rafId = null
+    let leaving = false
+
+    hero.addEventListener('mousemove', (e) => {
+      if (rafId) cancelAnimationFrame(rafId)
+      leaving = false
+      rafId = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect()
+        const cx = rect.left + rect.width / 2
+        const cy = rect.top + rect.height / 2
+        const dx = (e.clientX - cx) / (window.innerWidth / 2)
+        const dy = (e.clientY - cy) / (window.innerHeight / 2)
+        const rotY = dx * 6
+        const rotX = dy * -4
+        const liftY = -Math.abs(dy * 4) - 2
+        const shadowX = dx * 8
+        const shadowY = Math.abs(dy * 4) + 6
+
+        card.classList.add('is-tilting')
+        card.style.transform = `perspective(56rem) rotateY(${rotY}deg) rotateX(${rotX}deg) translateY(${liftY}px)`
+        card.style.boxShadow = `${shadowX}px ${shadowY}px 4rem rgba(0,0,0,0.55), 0 0.5rem 2rem rgba(0,0,0,0.3)`
+      })
+    })
+
+    hero.addEventListener('mouseleave', reset)
+
+    function reset() {
+      if (leaving) return
+      leaving = true
+      if (rafId) cancelAnimationFrame(rafId)
+      card.classList.remove('is-tilting')
+      card.style.transform = ''
+      card.style.boxShadow = ''
+    }
+
+    // === Spotlight follows cursor everywhere ===
+    const spotlight = document.querySelector('.spotlight')
+
+    document.addEventListener('mousemove', (e) => {
+      spotlight.style.setProperty('--sx', `${e.clientX}px`)
+      spotlight.style.setProperty('--sy', `${e.clientY}px`)
+      spotlight.classList.add('is-active')
+    })
+
+    // === Hide scroll hint on scroll ===
+    const scrollHint = document.querySelector('.scroll-hint')
+    let hintHidden = false
+    window.addEventListener('scroll', () => {
+      if (!hintHidden && window.scrollY > 60) {
+        scrollHint.classList.add('is-hidden')
+        hintHidden = true
+      }
+    }, { passive: true })
+
+    // === Talks carousel ===
+    ;(function () {
+      const carousel = document.querySelector('.talks__carousel')
+      if (!carousel) return
+      const controls = document.querySelector('.talks__controls')
+      const prevBtn = document.querySelector('.talks__nav--prev')
+      const nextBtn = document.querySelector('.talks__nav--next')
+
+      function getCardWidth() {
+        const first = carousel.querySelector('.talk')
+        if (!first) return 0
+        return first.offsetWidth + parseInt(getComputedStyle(carousel).gap || 0)
+      }
+
+      function scrollByCard(dir) {
+        carousel.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' })
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => scrollByCard(-1))
+      nextBtn && nextBtn.addEventListener('click', () => scrollByCard(1))
+
+      function updateNav() {
+        const overflows = carousel.scrollWidth > carousel.clientWidth + 2
+        if (controls) controls.style.display = overflows ? 'flex' : 'none'
+      }
+      updateNav()
+      window.addEventListener('resize', updateNav, { passive: true })
+
+      // drag-to-scroll
+      let isDown = false, startX, scrollLeft
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true
+        carousel.classList.add('is-dragging')
+        startX = e.pageX - carousel.offsetLeft
+        scrollLeft = carousel.scrollLeft
+      })
+      carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('is-dragging') })
+      carousel.addEventListener('mouseup',    () => { isDown = false; carousel.classList.remove('is-dragging') })
+      carousel.addEventListener('mousemove',  (e) => {
+        if (!isDown) return
+        e.preventDefault()
+        const x = e.pageX - carousel.offsetLeft
+        carousel.scrollLeft = scrollLeft - (x - startX)
+      })
+    })()
+
+    // === Projects carousel ===
+    ;(function () {
+      const carousel = document.querySelector('.projects__carousel')
+      if (!carousel) return
+      const controls = document.querySelector('.projects__controls')
+      const prevBtn = document.querySelector('.projects__nav--prev')
+      const nextBtn = document.querySelector('.projects__nav--next')
+
+      function getCardWidth() {
+        const first = carousel.querySelector('.project')
+        if (!first) return 0
+        return first.offsetWidth + parseInt(getComputedStyle(carousel).gap || 0)
+      }
+
+      function scrollByCard(dir) {
+        carousel.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' })
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => scrollByCard(-1))
+      nextBtn && nextBtn.addEventListener('click', () => scrollByCard(1))
+
+      function updateNav() {
+        const overflows = carousel.scrollWidth > carousel.clientWidth + 2
+        if (controls) controls.style.display = overflows ? 'flex' : 'none'
+      }
+      updateNav()
+      window.addEventListener('resize', updateNav, { passive: true })
+
+      // drag-to-scroll
+      let isDown = false, startX, scrollLeft
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true
+        carousel.classList.add('is-dragging')
+        startX = e.pageX - carousel.offsetLeft
+        scrollLeft = carousel.scrollLeft
+      })
+      carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('is-dragging') })
+      carousel.addEventListener('mouseup',    () => { isDown = false; carousel.classList.remove('is-dragging') })
+      carousel.addEventListener('mousemove',  (e) => {
+        if (!isDown) return
+        e.preventDefault()
+        const x = e.pageX - carousel.offsetLeft
+        carousel.scrollLeft = scrollLeft - (x - startX)
+      })
+    })()
+  </script>
 </body>
 
 </html>
