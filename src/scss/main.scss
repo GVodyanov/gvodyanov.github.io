@@ -60,6 +60,11 @@ a {
   text-decoration: none;
 }
 
+img,
+iframe {
+  filter: grayscale(1);
+}
+
 // === Landing (hero + tickers = 100vh) ===
 .landing {
   display: flex;
@@ -356,7 +361,7 @@ a {
 .content {
   position: relative;
   z-index: 2;
-  max-width: 60rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: $base * 4 $base * 2;
   display: flex;
@@ -433,7 +438,7 @@ a {
     background-color: $color-surface;
     border: 1px solid rgba($color-font, 0.08);
     border-radius: $base * 0.5;
-    padding: $base * 1.5;
+    overflow: hidden;
     font-size: $font-sm;
     transition: border-color 0.2s ease, background-color 0.2s ease;
     position: relative;
@@ -444,15 +449,37 @@ a {
       background-color: color.adjust($color-surface, $lightness: 2%);
     }
 
+    &-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      overflow: hidden;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      opacity: $opacity-body;
+      transition: opacity 0.2s ease;
+    }
+
+    &:hover &-img {
+      opacity: $opacity-primary;
+    }
+
     &-title {
       font-size: $font-body;
       font-weight: 700;
       margin-bottom: $base * 0.5;
+      padding: $base * 1.5 $base * 1.5 0;
     }
 
     &-role {
       opacity: $opacity-secondary;
       margin-bottom: $base * 0.5;
+      padding: 0 $base * 1.5;
     }
 
     &-duration {
@@ -460,6 +487,7 @@ a {
       font-size: $font-sm;
       opacity: $opacity-muted;
       letter-spacing: $tracking-normal;
+      padding: 0 $base * 1.5 $base * 1.5;
     }
   }
 
@@ -579,36 +607,20 @@ a {
 }
 
 // === Talks ===
-// The section header and footer stay within the content column.
-// The carousel itself escapes the column via negative margins so it can
-// span the full viewport width and fit all three cards side-by-side when
-// there's room.
 .talks {
   &__carousel-wrap {
-    // escape the parent padding/max-width
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    // center the inner carousel when it fits; let it scroll when it overflows
-    display: flex;
-    justify-content: center;
+    // no viewport escape — stays within the content column
   }
 
   &__carousel {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, #{$base * 18}));
-    justify-content: start;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: $base * 1.5;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: $base * 2;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    // sizing: shrink to content so it centers when smaller than viewport,
-    // but never wider than the viewport (allowing scroll when it overflows)
-    width: fit-content;
-    max-width: 100vw;
-    // padding keeps first/last cards reachable when the carousel scrolls
-    padding: 0 $base * 2;
+    width: 100%;
 
     &::-webkit-scrollbar { display: none; }
     &.is-dragging { cursor: grabbing; }
@@ -813,6 +825,183 @@ a {
   }
 }
 
+// === Projects ===
+.projects {
+  &__carousel-wrap {
+    // no viewport escape — stays within the content column
+  }
+
+  &__carousel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $base * 1.5;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+
+    &::-webkit-scrollbar { display: none; }
+    &.is-dragging { cursor: grabbing; }
+  }
+
+  &__controls {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: $base * 0.75;
+    margin-top: $base;
+  }
+
+  &__nav {
+    flex-shrink: 0;
+    width: $base * 2.5;
+    height: $base * 2.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-font, 0.06);
+    border: 1px solid rgba($color-font, 0.12);
+    border-radius: 50%;
+    color: rgba($color-font, $opacity-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    padding: 0;
+
+    svg {
+      width: $base * 1.1;
+      height: $base * 1.1;
+    }
+
+    &:hover {
+      background: rgba($color-font, 0.14);
+      border-color: rgba($color-font, 0.3);
+      color: rgba($color-font, $opacity-primary);
+    }
+  }
+}
+
+.project {
+  scroll-snap-align: start;
+  min-width: 0;
+  background-color: $color-surface;
+  border: 1px solid rgba($color-font, 0.08);
+  border-radius: $base * 0.5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+
+  &:hover { border-color: rgba($color-font, 0.2); }
+
+  &__img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: $color-background;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  &__body {
+    padding: $base * 1.25;
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.5;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: $font-body;
+    font-weight: 700;
+    line-height: 1.35;
+    opacity: $opacity-primary;
+  }
+
+  &__desc {
+    font-size: $font-sm;
+    line-height: $line-height-relaxed;
+    opacity: $opacity-body;
+  }
+
+  &__stack {
+    font-family: $font-mono;
+    font-size: $font-xs;
+    opacity: $opacity-secondary;
+    letter-spacing: $tracking-normal;
+    line-height: $line-height-relaxed;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $base * 0.4;
+    margin-top: auto;
+    padding-top: $base * 0.5;
+    font-size: $font-sm;
+    opacity: $opacity-secondary;
+    transition: opacity 0.2s ease;
+
+    svg {
+      width: $base * 0.9;
+      height: $base * 0.9;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      opacity: $opacity-primary;
+    }
+  }
+}
+
+// === Minor Projects ===
+.minor-projects {
+  margin-top: $base * 2;
+  display: flex;
+  flex-direction: column;
+  gap: $base * 0.75;
+}
+
+.minor-project {
+  font-size: $font-sm;
+  line-height: $line-height-relaxed;
+  opacity: $opacity-body;
+
+  &__link {
+    font-weight: 700;
+    opacity: $opacity-primary;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: $base * 0.25;
+    transition: opacity 0.2s ease;
+
+    svg {
+      width: $base * 0.8;
+      height: $base * 0.8;
+      flex-shrink: 0;
+      opacity: $opacity-muted;
+    }
+
+    &:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
 // === Responsive ===
 
 // Talks carousel switches to scrollable flex before other layout changes kick in
@@ -822,12 +1011,22 @@ a {
       grid-template-columns: unset;
       display: flex;
       cursor: grab;
-      padding: 0 $base;
-      scroll-padding-left: $base;
     }
   }
 
   .talk {
+    flex: 0 0 min(#{$base * 22}, 80vw);
+  }
+
+  .projects {
+    &__carousel {
+      grid-template-columns: unset;
+      display: flex;
+      cursor: grab;
+    }
+  }
+
+  .project {
     flex: 0 0 min(#{$base * 22}, 80vw);
   }
 }
@@ -885,6 +1084,10 @@ a {
 
 
   .talk {
+    flex: 0 0 85vw;
+  }
+
+  .project {
     flex: 0 0 85vw;
   }
 }
