@@ -7,6 +7,32 @@ $color-surface: #0c0b0a;
 
 $base: 1rem; // grid baseline — all spacing/sizing is a whole multiple of this
 
+// === Type scale ===
+$font-xs:      $base * 0.75;  // captions, bullets, meta
+$font-sm:      $base * 0.875; // labels, chips, ticker, card roles/duration
+$font-body:    $base * 1;     // default body copy, card/entry titles
+$font-heading: $base * 1.5;   // section headings
+$font-display: $base * 2;     // hero name
+
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+// === Letter-spacing scale ===
+$tracking-tight:  0.02em; // names, school, tight headings
+$tracking-normal: 0.04em; // section titles, mono metadata
+$tracking-wide:   0.08em; // ticker items
+$tracking-wider:  0.1em;  // ticker label, all-caps labels
+
+// === Line-height scale ===
+$line-height-base:    1.6;  // default body, compact UI
+$line-height-relaxed: 1.75; // text-heavy blocks (bio, education body)
+
+// === Opacity scale ===
+$opacity-faint:     0.12; // hairline separators, decorative elements
+$opacity-muted:     0.4;  // timestamps, separators, de-emphasised labels
+$opacity-secondary: 0.6;  // supporting text, roles, icons
+$opacity-body:      0.75; // standard body copy
+$opacity-primary:   0.9;  // headings, near-full-weight text
+
 // === Reset & Base ===
 *,
 *::before,
@@ -26,7 +52,7 @@ html {
 
 body {
   min-height: 100vh;
-  line-height: 1.6;
+  line-height: $line-height-base;
 }
 
 a {
@@ -102,16 +128,17 @@ a {
   }
 
   &__name {
-    font-size: $base * 2;
+    font-size: $font-display;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: $tracking-tight;
     margin-bottom: $base * 0.5;
   }
 
   &__title {
-    // browser default 1rem — no override needed
+    font-family: $font-mono;
+    font-size: $font-body;
     font-weight: 400;
-    opacity: 0.7;
+    opacity: $opacity-body;
     margin-bottom: $base;
   }
 
@@ -123,8 +150,8 @@ a {
   }
 
   &__role {
-    font-size: small; // browser keyword — slightly smaller than body, no magic number
-    opacity: 0.85;
+    font-size: $font-sm;
+    opacity: $opacity-primary;
   }
 
   &__links {
@@ -141,7 +168,7 @@ a {
     padding: $base * 0.5 $base;
     border: 1px solid rgba($color-font, 0.2);
     border-radius: $base * 0.5;
-    font-size: small; // browser keyword — no magic number
+    font-size: $font-sm;
     white-space: nowrap;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 
@@ -175,17 +202,17 @@ a {
   display: flex;
   align-items: center;
   background-color: $color-background;
-  border-top: 1px solid rgba($color-font, 0.06);
+  border-top: 1px solid rgba($color-font, $opacity-faint);
 
   &__label {
     flex-shrink: 0;
     padding: $base * 0.5 $base;
-    font-size: small;
+    font-size: $font-xs;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    opacity: 0.4;
+    letter-spacing: $tracking-wider;
+    opacity: $opacity-muted;
     white-space: nowrap;
-    border-right: 1px solid rgba($color-font, 0.06);
+    border-right: 1px solid rgba($color-font, $opacity-faint);
   }
 
   &__viewport {
@@ -226,14 +253,14 @@ a {
   }
 
   &__item {
-    font-size: small;
-    letter-spacing: 0.08em;
-    opacity: 0.25;
+    font-size: $font-xs;
+    letter-spacing: $tracking-wide;
+    opacity: $opacity-muted;
   }
 
   &__sep {
-    opacity: 0.12;
-    font-size: small;
+    opacity: $opacity-faint;
+    font-size: $font-xs;
     flex-shrink: 0;
   }
 }
@@ -261,7 +288,7 @@ a {
   &__arrow {
     width: $base * 2;
     height: $base * 2;
-    color: rgba($color-font, 0.35);
+    color: rgba($color-font, $opacity-muted);
     flex-shrink: 0;
     animation: arrow-bob 2.4s ease-in-out infinite;
 
@@ -275,8 +302,8 @@ a {
 }
 
 @keyframes arrow-bob {
-  0%, 100% { transform: translateY(-#{$base * 0.3}); opacity: 0.2; }
-  50%       { transform: translateY(#{$base * 0.3}); opacity: 0.6; }
+  0%, 100% { transform: translateY(-#{$base * 0.3}); opacity: $opacity-faint * 2.5; }
+  50%       { transform: translateY(#{$base * 0.3}); opacity: $opacity-secondary; }
 }
 
 // === Spotlight (fixed to viewport, follows cursor everywhere outside hero) ===
@@ -339,11 +366,11 @@ a {
 
 // === Section Title ===
 .section-title {
-  font-size: $base * 1.5;
+  font-size: $font-heading;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: $tracking-normal;
   margin-bottom: $base * 1.5;
-  opacity: 0.9;
+  opacity: $opacity-primary;
 }
 
 // === Bio ===
@@ -366,7 +393,7 @@ a {
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    opacity: 0.85;
+    opacity: $opacity-primary;
     display: block;
     border-radius: $base * 0.5;
   }
@@ -382,9 +409,9 @@ a {
   }
 
   &__text {
-    font-size: $base;
-    line-height: 1.8;
-    opacity: 0.7;
+    font-size: $font-body;
+    line-height: $line-height-relaxed;
+    opacity: $opacity-body;
   }
 }
 
@@ -407,6 +434,7 @@ a {
     border: 1px solid rgba($color-font, 0.08);
     border-radius: $base * 0.5;
     padding: $base * 1.5;
+    font-size: $font-sm;
     transition: border-color 0.2s ease, background-color 0.2s ease;
     position: relative;
     z-index: 1;
@@ -417,21 +445,21 @@ a {
     }
 
     &-title {
-      font-size: $base;
+      font-size: $font-body;
       font-weight: 700;
-      margin-bottom: $base * 0.25;
+      margin-bottom: $base * 0.5;
     }
 
     &-role {
-      font-size: small;
-      opacity: 0.6;
+      opacity: $opacity-secondary;
       margin-bottom: $base * 0.5;
     }
 
     &-duration {
-      font-size: small;
-      opacity: 0.4;
-      letter-spacing: 0.04em;
+      font-family: $font-mono;
+      font-size: $font-sm;
+      opacity: $opacity-muted;
+      letter-spacing: $tracking-normal;
     }
   }
 
@@ -442,7 +470,7 @@ a {
     align-items: center;
     justify-content: center;
     gap: $base * 0.5;
-    padding: $base * 1.25 $base * 0.5;
+    padding: $base * 1.5 $base * 0.5;
     background-color: $color-surface;
     border: 1px solid rgba($color-font, 0.08);
     border-radius: $base * 0.5;
@@ -453,7 +481,7 @@ a {
 
     &:hover {
       border-color: rgba($color-font, 0.2);
-      background-color: #1a1714;
+      background-color: color.adjust($color-surface, $lightness: 2%);
     }
 
     i, &-icon {
@@ -461,7 +489,7 @@ a {
       width: $base * 1.75;
       height: $base * 1.75;
       color: $color-font;
-      opacity: 0.7;
+      opacity: $opacity-body;
     }
 
     // simple-icons are black by default, invert for dark theme
@@ -470,21 +498,340 @@ a {
     }
 
     &-label {
-      font-size: $base * 1.5;
+      font-size: $font-heading;
       font-weight: 700;
-      opacity: 0.5;
-      line-height: 1;
+      opacity: $opacity-secondary;
     }
 
     span {
-      font-size: small;
-      opacity: 0.7;
+      font-size: $font-sm;
+      opacity: $opacity-body;
       white-space: nowrap;
     }
   }
 }
 
+// === Education ===
+.education {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $base * 1.5;
+  }
+
+  &__entry {
+    background-color: $color-surface;
+    border: 1px solid rgba($color-font, 0.08);
+    border-radius: $base * 0.5;
+    padding: $base * 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.5;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      border-color: rgba($color-font, 0.2);
+      background-color: color.adjust($color-surface, $lightness: 2%);
+    }
+  }
+
+  &__school {
+    font-size: $font-body;
+    font-weight: 700;
+    letter-spacing: $tracking-tight;
+  }
+
+  &__degree {
+    font-family: $font-mono;
+    font-size: $font-sm;
+    letter-spacing: $tracking-normal;
+    opacity: $opacity-secondary;
+  }
+
+  &__body {
+    margin-top: $base * 0.5;
+    font-size: $font-sm;
+    line-height: $line-height-relaxed;
+    opacity: $opacity-body;
+  }
+
+  &__bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.5;
+    padding-top: $base * 0.25;
+
+    li {
+      font-size: $font-xs;
+      opacity: $opacity-secondary;
+      padding-left: $base * 1;
+      position: relative;
+
+      &::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        opacity: $opacity-secondary;
+      }
+    }
+  }
+}
+
+// === Talks ===
+// The section header and footer stay within the content column.
+// The carousel itself escapes the column via negative margins so it can
+// span the full viewport width and fit all three cards side-by-side when
+// there's room.
+.talks {
+  &__carousel-wrap {
+    // escape the parent padding/max-width
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    // center the inner carousel when it fits; let it scroll when it overflows
+    display: flex;
+    justify-content: center;
+  }
+
+  &__carousel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, #{$base * 18}));
+    justify-content: start;
+    gap: $base * 1.5;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: $base * 2;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    // sizing: shrink to content so it centers when smaller than viewport,
+    // but never wider than the viewport (allowing scroll when it overflows)
+    width: fit-content;
+    max-width: 100vw;
+    // padding keeps first/last cards reachable when the carousel scrolls
+    padding: 0 $base * 2;
+
+    &::-webkit-scrollbar { display: none; }
+    &.is-dragging { cursor: grabbing; }
+  }
+
+  &__controls {
+    display: none; // shown by JS when overflow is detected
+    justify-content: center;
+    align-items: center;
+    gap: $base * 0.75;
+    margin-top: $base;
+  }
+
+  &__nav {
+    flex-shrink: 0;
+    width: $base * 2.5;
+    height: $base * 2.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-font, 0.06);
+    border: 1px solid rgba($color-font, 0.12);
+    border-radius: 50%;
+    color: rgba($color-font, $opacity-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    padding: 0;
+
+    svg {
+      width: $base * 1.1;
+      height: $base * 1.1;
+    }
+
+    &:hover {
+      background: rgba($color-font, 0.14);
+      border-color: rgba($color-font, 0.3);
+      color: rgba($color-font, $opacity-primary);
+    }
+  }
+
+  &__also {
+    margin-top: $base * 1.5;
+    font-size: $font-body;
+    opacity: $opacity-secondary;
+    line-height: $line-height-relaxed;
+
+    span {
+      opacity: 1;
+      font-weight: 600;
+      color: $color-font;
+    }
+
+    a {
+        color: $color-font;
+        text-decoration: underline;
+
+        &:hover {
+            color: rgba($color-font, 0.8);
+        }
+    }
+  }
+}
+
+.talk {
+  scroll-snap-align: start;
+  min-width: 0; // grid children can shrink below their content width
+  background-color: $color-surface;
+  border: 1px solid rgba($color-font, 0.08);
+  border-radius: $base * 0.5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+
+  &:hover { border-color: rgba($color-font, 0.2); }
+
+  &__embed-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; // 16:9
+    background-color: $color-background;
+    flex-shrink: 0;
+  }
+
+  &__embed {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  &__body {
+    padding: $base * 1.25;
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.4;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: $font-body;
+    font-weight: 700;
+    line-height: 1.35;
+    opacity: $opacity-primary;
+  }
+
+  &__event {
+    font-family: $font-mono;
+    font-size: $font-sm;
+    opacity: $opacity-secondary;
+    letter-spacing: $tracking-normal;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: $base * 0.3;
+    font-size: $font-xs;
+    opacity: $opacity-muted;
+    margin-top: auto;
+    padding-top: $base * 0.5;
+
+    svg {
+      width: $base * 0.85;
+      height: $base * 0.85;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+  }
+
+  &__desc {
+    margin-top: $base * 0.25;
+    font-size: $font-sm;
+    line-height: $line-height-relaxed;
+    opacity: $opacity-body;
+  }
+}
+
+// === Certifications ===
+.certs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $base;
+}
+
+.cert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $base;
+  padding: $base * 1.5;
+  background-color: $color-surface;
+  border: 1px solid rgba($color-font, 0.08);
+  border-radius: $base * 0.5;
+  text-decoration: none;
+  color: $color-font;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    border-color: rgba($color-font, 0.2);
+    background-color: color.adjust($color-surface, $lightness: 2%);
+  }
+
+  &__badge {
+    width: $base * 5;
+    height: $base * 5;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $base * 0.35;
+    text-align: left;
+  }
+
+  &__title {
+    font-size: $font-sm;
+    font-weight: 700;
+    line-height: 1.35;
+    opacity: $opacity-primary;
+    text-align: center;
+  }
+
+  &__date {
+    font-family: $font-mono;
+    font-size: $font-xs;
+    opacity: $opacity-muted;
+    text-align: center;
+    letter-spacing: $tracking-normal;
+  }
+
+  &__desc {
+    font-size: $font-xs;
+    opacity: $opacity-secondary;
+    line-height: $line-height-relaxed;
+  }
+}
+
 // === Responsive ===
+
+// Talks carousel switches to scrollable flex before other layout changes kick in
+@media (max-width: #{$base * 60}) {
+  .talks {
+    &__carousel {
+      grid-template-columns: unset;
+      display: flex;
+      cursor: grab;
+      padding: 0 $base;
+      scroll-padding-left: $base;
+    }
+  }
+
+  .talk {
+    flex: 0 0 min(#{$base * 22}, 80vw);
+  }
+}
+
 @media (max-width: #{$base * 35}) {
   .card {
     flex-direction: column;
@@ -496,7 +843,7 @@ a {
     }
 
     &__name {
-      font-size: $base * 1.5;
+      font-size: $font-heading;
     }
 
     &__links {
@@ -525,4 +872,20 @@ a {
       width: 100%;
     }
   }
+
+  .education {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .certs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .talk {
+    flex: 0 0 85vw;
+  }
 }
+
