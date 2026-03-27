@@ -589,30 +589,61 @@
       }
     }, { passive: true })
 
-    // === Talks carousel ===
-    ;(function () {
-      const carousel = document.querySelector('.talks__carousel')
+    // === Generic carousel factory ===
+    function initCarousel({ carouselSel, cardSel, controlsSel, prevSel, nextSel }) {
+      const carousel = document.querySelector(carouselSel)
       if (!carousel) return
-      const controls = document.querySelector('.talks__controls')
-      const prevBtn = document.querySelector('.talks__nav--prev')
-      const nextBtn = document.querySelector('.talks__nav--next')
+      const controls = document.querySelector(controlsSel)
+      const prevBtn  = document.querySelector(prevSel)
+      const nextBtn  = document.querySelector(nextSel)
 
       function getCardWidth() {
-        const first = carousel.querySelector('.talk')
+        const first = carousel.querySelector(cardSel)
         if (!first) return 0
         return first.offsetWidth + parseInt(getComputedStyle(carousel).gap || 0)
       }
 
       function scrollByCard(dir) {
-        carousel.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' })
+        // Wrap-around loop
+        const cardW     = getCardWidth()
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth
+        const atEnd     = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2
+        const atStart   = carousel.scrollLeft <= 2
+
+        if (dir > 0 && atEnd) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' })
+        } else if (dir < 0 && atStart) {
+          carousel.scrollTo({ left: maxScroll, behavior: 'smooth' })
+        } else {
+          carousel.scrollBy({ left: dir * cardW, behavior: 'smooth' })
+        }
       }
 
-      prevBtn && prevBtn.addEventListener('click', () => scrollByCard(-1))
-      nextBtn && nextBtn.addEventListener('click', () => scrollByCard(1))
+      // Auto-scroll: only on mobile (controls visible), stops permanently on manual tap
+      let autoTimer    = null
+      let userTookOver = false
+
+      function startAutoScroll() {
+        if (autoTimer || userTookOver) return
+        autoTimer = setInterval(() => {
+          if (controls && controls.style.display === 'none') return
+          scrollByCard(1)
+        }, 4000)
+      }
+
+      function stopAutoScroll() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null }
+        userTookOver = true
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => { stopAutoScroll(); scrollByCard(-1) })
+      nextBtn && nextBtn.addEventListener('click', () => { stopAutoScroll(); scrollByCard(1) })
 
       function updateNav() {
         const overflows = carousel.scrollWidth > carousel.clientWidth + 2
         if (controls) controls.style.display = overflows ? 'flex' : 'none'
+        if (overflows && !userTookOver) startAutoScroll()
+        else if (!overflows && autoTimer) { clearInterval(autoTimer); autoTimer = null }
       }
       updateNav()
       window.addEventListener('resize', updateNav, { passive: true })
@@ -633,53 +664,25 @@
         const x = e.pageX - carousel.offsetLeft
         carousel.scrollLeft = scrollLeft - (x - startX)
       })
-    })()
+    }
+
+    // === Talks carousel ===
+    initCarousel({
+      carouselSel: '.talks__carousel',
+      cardSel:     '.talk',
+      controlsSel: '.talks__controls',
+      prevSel:     '.talks__nav--prev',
+      nextSel:     '.talks__nav--next',
+    })
 
     // === Projects carousel ===
-    ;(function () {
-      const carousel = document.querySelector('.projects__carousel')
-      if (!carousel) return
-      const controls = document.querySelector('.projects__controls')
-      const prevBtn = document.querySelector('.projects__nav--prev')
-      const nextBtn = document.querySelector('.projects__nav--next')
-
-      function getCardWidth() {
-        const first = carousel.querySelector('.project')
-        if (!first) return 0
-        return first.offsetWidth + parseInt(getComputedStyle(carousel).gap || 0)
-      }
-
-      function scrollByCard(dir) {
-        carousel.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' })
-      }
-
-      prevBtn && prevBtn.addEventListener('click', () => scrollByCard(-1))
-      nextBtn && nextBtn.addEventListener('click', () => scrollByCard(1))
-
-      function updateNav() {
-        const overflows = carousel.scrollWidth > carousel.clientWidth + 2
-        if (controls) controls.style.display = overflows ? 'flex' : 'none'
-      }
-      updateNav()
-      window.addEventListener('resize', updateNav, { passive: true })
-
-      // drag-to-scroll
-      let isDown = false, startX, scrollLeft
-      carousel.addEventListener('mousedown', (e) => {
-        isDown = true
-        carousel.classList.add('is-dragging')
-        startX = e.pageX - carousel.offsetLeft
-        scrollLeft = carousel.scrollLeft
-      })
-      carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('is-dragging') })
-      carousel.addEventListener('mouseup',    () => { isDown = false; carousel.classList.remove('is-dragging') })
-      carousel.addEventListener('mousemove',  (e) => {
-        if (!isDown) return
-        e.preventDefault()
-        const x = e.pageX - carousel.offsetLeft
-        carousel.scrollLeft = scrollLeft - (x - startX)
-      })
-    })()
+    initCarousel({
+      carouselSel: '.projects__carousel',
+      cardSel:     '.project',
+      controlsSel: '.projects__controls',
+      prevSel:     '.projects__nav--prev',
+      nextSel:     '.projects__nav--next',
+    })
   </script>
 </body>
 
