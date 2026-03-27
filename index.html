@@ -556,14 +556,21 @@
       card.style.boxShadow = ''
     }
 
-    // === Spotlight follows cursor everywhere ===
+    // === Spotlight: cursor on pointer devices, autonomous orb on touch ===
     const spotlight = document.querySelector('.spotlight')
 
-    document.addEventListener('mousemove', (e) => {
-      spotlight.style.setProperty('--sx', `${e.clientX}px`)
-      spotlight.style.setProperty('--sy', `${e.clientY}px`)
-      spotlight.classList.add('is-active')
-    })
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+
+    if (isTouchDevice) {
+      // Autonomous floating orb — no cursor needed
+      spotlight.classList.add('is-active', 'is-touch')
+    } else {
+      document.addEventListener('mousemove', (e) => {
+        spotlight.style.setProperty('--sx', `${e.clientX}px`)
+        spotlight.style.setProperty('--sy', `${e.clientY}px`)
+        spotlight.classList.add('is-active')
+      })
+    }
 
     // === Hide scroll hint on scroll ===
     const scrollHint = document.querySelector('.scroll-hint')
