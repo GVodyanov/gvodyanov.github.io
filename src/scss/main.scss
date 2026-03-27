@@ -3,7 +3,7 @@
 // === Variables ===
 $color-background: #090909;
 $color-font: #f0ece8;
-$color-surface: #0c0b0a;
+$color-surface: #0d0c0b;
 
 $base: 1rem; // grid baseline — all spacing/sizing is a whole multiple of this
 
@@ -142,7 +142,7 @@ iframe {
 
   &__title {
     font-family: $font-mono;
-    font-size: $font-body;
+    font-size: $font-sm;
     font-weight: 400;
     opacity: $opacity-body;
     margin-bottom: $base;
@@ -315,7 +315,21 @@ iframe {
   50%       { transform: translateY(#{$base * 0.3}); opacity: $opacity-secondary; }
 }
 
-// === Spotlight (fixed to viewport, follows cursor everywhere outside hero) ===
+// === @property registrations for animatable spotlight coordinates ===
+// inherits: true so ::before / ::after pick up the value from the parent element
+@property --sx {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: -999px;
+}
+
+@property --sy {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: -999px;
+}
+
+// === Spotlight (fixed to viewport, follows cursor everywhere) ===
 .spotlight {
   position: fixed;
   inset: 0;
@@ -359,6 +373,67 @@ iframe {
   &.is-active::after {
     opacity: 1;
   }
+
+  // === Touch: autonomous floating orb ===
+  // Instead of using --sx/--sy (which need px values from JS),
+  // we place a physical orb element and animate its position with translate.
+  &.is-touch::before {
+    background: radial-gradient(
+      circle 22rem at 50% 50%,
+      rgba(255, 106, 0, 0.11) 0%,
+      transparent 65%
+    );
+    // Fixed-size circle, initially off-screen top-left; animation translates it
+    position: fixed;
+    inset: unset;
+    top: 0;
+    left: 0;
+    right: unset;
+    bottom: unset;
+    width: 44rem;
+    height: 44rem;
+    border-radius: 50%;
+    animation: orb-float 20s ease-in-out infinite;
+    transition: opacity 1.2s ease;
+    will-change: transform;
+  }
+
+  &.is-touch::after {
+    // Grain layer that tracks the floating orb — same keyframes as ::before
+    display: block;
+    position: fixed;
+    inset: unset;
+    top: 0;
+    left: 0;
+    right: unset;
+    bottom: unset;
+    width: 44rem;
+    height: 44rem;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.40' numOctaves='20' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.12'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    mix-blend-mode: overlay;
+    -webkit-mask-image: radial-gradient(circle 22rem at 50% 50%, black 0%, transparent 70%);
+    mask-image: radial-gradient(circle 22rem at 50% 50%, black 0%, transparent 70%);
+    animation: orb-float 20s ease-in-out infinite;
+    transition: opacity 1.2s ease;
+    will-change: transform;
+  }
+}
+
+// Orb drifts slowly around the viewport in an organic path.
+// translate() moves the centre of the orb to different viewport positions.
+// (The orb element is 44rem; we offset by half its size to centre it at the target point.)
+@keyframes orb-float {
+  0%   { transform: translate(calc(15vw - 22rem), calc(20vh - 22rem)); }
+  14%  { transform: translate(calc(70vw - 22rem), calc(15vh - 22rem)); }
+  28%  { transform: translate(calc(75vw - 22rem), calc(60vh - 22rem)); }
+  42%  { transform: translate(calc(50vw - 22rem), calc(80vh - 22rem)); }
+  57%  { transform: translate(calc(20vw - 22rem), calc(70vh - 22rem)); }
+  71%  { transform: translate(calc(10vw - 22rem), calc(30vh - 22rem)); }
+  85%  { transform: translate(calc(55vw - 22rem), calc(40vh - 22rem)); }
+  100% { transform: translate(calc(15vw - 22rem), calc(20vh - 22rem)); }
 }
 
 // === Content wrapper (central column) ===
@@ -1053,7 +1128,8 @@ iframe {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: flex-start;
-      gap: $base * 0.5;
+      gap: $base * 0.2;
+      margin: 0 -0.8 * $base;
     }
   }
 
