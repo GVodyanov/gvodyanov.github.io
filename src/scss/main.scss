@@ -692,14 +692,14 @@ iframe {
   }
 
   &__carousel {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: $base * 1.5;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     width: 100%;
+    cursor: grab;
 
     &::-webkit-scrollbar { display: none; }
     &.is-dragging { cursor: grabbing; }
@@ -765,7 +765,9 @@ iframe {
 
 .talk {
   scroll-snap-align: start;
-  min-width: 0; // grid children can shrink below their content width
+  min-width: 0;
+  // Show exactly 3 cards at a time; gap is $base * 1.5 between items
+  flex: 0 0 calc((100% - #{$base * 1.5 * 2}) / 3);
   background-color: $color-surface;
   border: 1px solid rgba($color-font, 0.08);
   border-radius: $base * 0.5;
@@ -1083,33 +1085,6 @@ iframe {
 
 // === Responsive ===
 
-// Talks carousel switches to scrollable flex before other layout changes kick in
-@media (max-width: #{$base * 60}) {
-  .talks {
-    &__carousel {
-      grid-template-columns: unset;
-      display: flex;
-      cursor: grab;
-    }
-  }
-
-  .talk {
-    flex: 0 0 min(#{$base * 22}, 80vw);
-  }
-
-  .projects {
-    &__carousel {
-      grid-template-columns: unset;
-      display: flex;
-      cursor: grab;
-    }
-  }
-
-  .project {
-    flex: 0 0 min(#{$base * 22}, 80vw);
-  }
-}
-
 @media (max-width: #{$base * 35}) {
   .card {
     flex-direction: column;
@@ -1171,4 +1146,3 @@ iframe {
     flex: 0 0 85vw;
   }
 }
-
