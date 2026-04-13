@@ -1143,6 +1143,10 @@ iframe {
     flex: 0 0 85vw;
   }
 
+  .projects__carousel {
+    grid-template-columns: 1fr;
+  }
+
   .project {
     flex: 0 0 85vw;
   }
